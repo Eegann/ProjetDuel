@@ -169,6 +169,17 @@ public class Situation {
 		return res;
 	}
 	
+	public String toCSVFileHeightRandom() {
+		String res = "";//getCSVColumns()+"\n";
+		
+		res+=averageAltitude+";"+minAltitude+";"+maxAltitude+";"+currentAltitude+";"+fovValue+";"+lastAction+";"+life
+				+";"+impactProba+";";
+		
+		res+= (victory)?"VICTORY":"DEFEAT";
+		
+		return res;
+	}
+	
 	
 	
 	

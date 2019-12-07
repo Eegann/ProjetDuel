@@ -64,6 +64,7 @@ import sma.actionsBehaviours.LegalActions;
 import sma.actionsBehaviours.LegalActions.LegalAction;
 import sma.actionsBehaviours.LegalActions.Orientation;
 import sma.actionsBehaviours.PrologBehavior;
+import sma.actionsBehaviours.PrologHeightRandomBehavior;
 import sma.agents.FinalAgent;
 
 
@@ -479,10 +480,12 @@ public class NewEnv extends SimpleApplication {
 						System.out.println("Simulation done");
 						
 						if(!enemy.equals("Player1")){
-							PrologBehavior.sit.victory = true;
+							//PrologBehavior.sit.victory = true;
+							PrologHeightRandomBehavior.sit.victory = true;
 						}
 						
-						saveCSV();
+						//saveCSV();
+						saveCSVHeightRandom();
 						System.exit(0);
 					}
 
@@ -516,6 +519,24 @@ public class NewEnv extends SimpleApplication {
 		
 	}
 
+	public static void saveCSVHeightRandom(){
+		
+		String res = PrologHeightRandomBehavior.sit.toCSVFileHeightRandom();
+		int id = new Random().nextInt(10000);
+		System.out.println(res);
+		try{
+		    PrintWriter writer = new PrintWriter(System.getProperty("user.dir")+"/ressources/simus/HeightRandom"+id+".csv", "UTF-8");
+		    writer.println(res);
+		    writer.close();
+		    System.out.println(System.getProperty("user.dir"));
+		    System.out.println("Execution result saved in /ressources/simus/");
+		} catch (IOException e) {
+		  System.out.println(e);
+		  System.out.println("Experiment saving failed");
+		}
+		
+	}
+	
 	public synchronized float impactProba(Vector3f origin, Vector3f target){
 
 		float distCoeff = 0.8f; // Should be public static final 
